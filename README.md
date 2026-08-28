@@ -2,6 +2,12 @@
 
 A browser-based tool for measuring the **Effective Optical Zone (EOZ)** and **decentration** on Pentacam tangential curvature difference maps (TCDM) after corneal refractive surgery (SMILE / KLEx / FS-LASIK).
 
+[![Release](https://img.shields.io/github/v/release/drmehmetaltun/EOZ-Automated-Measurement)](https://github.com/drmehmetaltun/EOZ-Automated-Measurement/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22150239.svg)](https://doi.org/10.5281/zenodo.22150239)
+
+**Current version: v1.0.0** — this is the version referenced in the accompanying manuscript and permanently archived on Zenodo (DOI: [10.5281/zenodo.22150239](https://doi.org/10.5281/zenodo.22150239)). Later commits to `main` may include changes not reflected in the published analysis; always cite the archived DOI or a specific tagged [release](https://github.com/drmehmetaltun/EOZ-Automated-Measurement/releases) rather than the repository in general.
+
 **[Live Demo →](https://drmehmetaltun.github.io/EOZ-Automated-Measurement/)**
 
 ![Example Pentacam difference map](Docs/example-pentacam-map.png)
@@ -13,6 +19,7 @@ A browser-based tool for measuring the **Effective Optical Zone (EOZ)** and **de
 ## Purpose
 
 Manual measurement of the effective optical zone on corneal tangential difference maps (e.g. with ImageJ) is time-consuming and depends on the operator's threshold and tracing choices. This tool automates the full pipeline — vertex detection, scale calibration, 0.00 D boundary extraction, ellipse fitting, and decentration calculation — from a single screenshot, entirely client-side in the browser. It was built to support a validation study comparing automated vs. manual (ImageJ) EOZ measurement after SMILE/KLEx and FS-LASIK, and is released so other groups can reproduce or extend the method.
+
 
 ## Input Image Requirements
 
@@ -106,10 +113,15 @@ The computational core was validated against a Python reference implementation �
 
 ## Citation Information
 
-If you use this tool in a publication, please cite:
+If you use this tool in a publication, please cite the manuscript:
 
 > *Manuscript in preparation — citation details will be added upon publication.*
+
+Please also cite the specific software version you used:
+
+> Altun M. EOZ Analyzer (v1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22150239
 
 ## Contributing
 
 Issues and pull requests are welcome. The entire application is a single HTML file with no build step — open `index.html` in a text editor to get started.
+
