@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "EOZ Analyzer: Automated Effective Optical Zone and Decentration Measurement for Pentacam Tangential Curvature Difference Maps"
+type: software
+version: 1.0.0
+date-released: 2026-08-28
+license: MIT
+doi: 10.5281/zenodo.22150239
+repository-code: "https://github.com/drmehmetaltun/EOZ-Automated-Measurement"
+url: "https://drmehmetaltun.github.io/EOZ-Automated-Measurement/"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22150239
+    description: "The concept/version DOI for v1.0.0, archived on Zenodo"
+authors:
+  - family-names: Altun
+    given-names: Mehmet
