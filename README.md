@@ -4,10 +4,10 @@ A browser-based tool for measuring the **Effective Optical Zone (EOZ)** and **de
 
 **[Live Demo →](https://drmehmetaltun.github.io/EOZ-Automated-Measurement/)**
 
-![Example Pentacam difference map](docs/example-pentacam-map.png)
+![Example Pentacam difference map](Docs/example-pentacam-map.png)
 *Example input: a Pentacam anterior tangential curvature difference map (standard 1300×720 export) — this is the raw screenshot format the tool expects.*
 
-![Example EOZ analysis output](docs/example-output.png)
+![Example EOZ analysis output](Docs/example-output.png)
 *The tool in action: EOZ boundary (green contour), fitted ellipse, major/minor axes, and corneal vertex overlaid on the same map, with the result panel showing computed decentration and other parameters.*
 
 ## Purpose
