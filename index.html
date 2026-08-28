@@ -269,7 +269,7 @@
 
 <header>
   <h1>EOZ / Decentration</h1>
-  <span class="sub">Pentacam &mdash; on tanjansiyel difference mapsi</span>
+  <span class="sub">Pentacam &mdash; anterior tangential difference map</span>
   <span id="calChip" class="cal-chip">calibration pending</span>
 </header>
 
@@ -1251,7 +1251,7 @@
   /**
    * ImageJ "Fit Ellipse" ESDEGERI (ij.process.EllipseFitter port'u).
    *
-   * Yayinlanmis EOZ calismalarindaki is akisi sudur: difference mapsi esiklenir,
+   * Yayinlanmis EOZ calismalarindaki is akisi sudur: difference map esiklenir,
    * "Measure" with ALAN directly is measured (pixel sayimi), ardindan "Fit Ellipse"
    * with merkez/aci/axisler elde edilir. Bizim kendi Halir-Flusser fitimizden
    * iki temel difference vardir:
@@ -1423,7 +1423,7 @@
    * Goruntudeki map disklerini bulur.
    *
    * Pentacam'in "Difference A - B" ekraninda UC map yan yanadir (iki mutlak
-   * egrilik + a difference mapsi) and valuelendirilmesi gereken FARK mapsidir,
+   * egrilik + a difference map) and valuelendirilmesi gereken FARK map,
    * i.e. en sagdaki. Skala cubuklari en/boy ratioyla elenir (cubuk dar-uzun,
    * map karesel), this yuzden separateca maskelenmeleri gerekmez.
    */
@@ -1477,7 +1477,7 @@
    * also skala cubugu solda isnda is yaramiyordu.
    *
    * SIMDIKI: disk detectioni is done; birden fazla map varsa secim mapSelect ile
-   * belirlenir (default "rightmost" = difference mapsi). Disk bulunamazsa en
+   * belirlenir (default "rightmost" = difference map). Disk bulunamazsa en
    * large baglantili doygun componente dusulur.
    */
   function roughCenter(hsv, w, h, opts) {
@@ -1788,7 +1788,7 @@
       // (white ring + black dot) tam oraya cizilidir and hue thresholdni gecmez.
       // Bu case "en large componente dus" YANLISTIR — cok panelli a ekran
       // imagesunde en large component KOMSU HARITA may be (observdi: sag fark
-      // mapsi yerine ortadaki mutlak egrilik mapsi secildi and EOZ 24.8 mm2
+      // mapsi yerine ortadaki mutlak curvature map selected and EOZ 24.8 mm2
       // yerine 61.8 mm2 cikti). Dogrusu merkeze EN YAKIN regionyi bulmaktir:
       // signn diameter small because disa dogru ring ring tarama birkac
       // pixelde dogru componente ulasir.
@@ -1999,7 +1999,7 @@
       if (opts.nearX !== undefined) sc -= Math.abs(c.xCol - opts.nearX) / w * 200;
       return sc;
     };
-    // Degerlendirilen map SAGDAKI difference mapsi because skala also SAGDAKI
+    // Degerlendirilen map SAGDAKI difference map because skala also SAGDAKI
     // difference skalasi olmalidir. Puan siralamasina birakmak yanlis cubugu secebilir:
     // soldaki mutlak egrilik cubugu this in the image 63 blok verip 61 blokluk fark
     // cubugunu 2 puanla geride birakti. Bu yuzden before GECERLILIK suzgeci
@@ -3105,12 +3105,12 @@
       $("scaleIn").value = (1 / scaleMm).toFixed(2);
       $("runBtn").disabled = false;
       setChip((1 / scaleMm).toFixed(1) + " px/mm \u00B7 vtx " + vtx[0].toFixed(1) + "," + vtx[1].toFixed(1) +
-              (vtxSource === "ring" ? " (ring)" : vtxSource === "marker" ? " (renk-tespit, yedek)" : "") +
-              (colorScale ? " \u00B7 skala " + colorScale.blockCount + " blok" : " \u00B7 skala YOK"), "ok");
+              (vtxSource === "ring" ? " (ring)" : vtxSource === "marker" ? " (color detection, fallback)" : "") +
+              (colorScale ? " \u00B7 scale " + colorScale.blockCount + " blocks" : " \u00B7 scale NONE"), "ok");
       if (!colorScale)
         msg("Color scale bar not found \u2014 boundary will be extracted using HUE THRESHOLD. " +
             "For 0.00 D iso-contour the FULL scale bar must be included in the image " +
-            "(difference mapsi + yanindaki dikey renk cubugu birlikte kirpilmali).", "warn");
+            "(difference map + the vertical color bar next to it must be cropped together).", "warn");
       if (!cal.imgMatchesTemplate)
         msg("Image size (" + W + "\u00D7" + H + ") standard template (" +
             cal.stdImgW + "\u00D7" + cal.stdImgH +
@@ -3648,7 +3648,7 @@
       }
     }
     // vtx
-    $("vtxState").textContent = vtx ? "px " + vtx[0].toFixed(1) + ", " + vtx[1].toFixed(1) + " \u00B7 orijin (0,0)" : "\u2014";
+    $("vtxState").textContent = vtx ? "px " + vtx[0].toFixed(1) + ", " + vtx[1].toFixed(1) + " \u00B7 origin (0,0)" : "\u2014";
 
     // nokta araci
     const pte = $("pointState");
@@ -4433,11 +4433,11 @@
       "@media print{body{margin:0}h2{page-break-after:avoid}tr{page-break-inside:avoid}}" +
       "</style></head><body>";
     h += "<h1>EOZ batch analysis report</h1><div class='sub'>" +
-      new Date().toLocaleString("tr-TR") + " \u00B7 " + ok.length + " / " + batchRows.length +
+      new Date().toLocaleString("en-US") + " \u00B7 " + ok.length + " / " + batchRows.length +
       " image succeeded \u00B7 POZ " + nf(poz, 2) + " mm</div>";
 
-    h += "<div class='note'><b>Method.</b> Sinir, tanjansiyel egrilik difference mapsinda " +
-      "<b>0.00 D iso-contour</b>. The color scale was read from each image to map " +
+    h += "<div class='note'><b>Method.</b> The boundary is the " +
+      "<b>0.00 D iso-contour</b> on the tangential curvature difference map. The color scale was read from each image to map " +
       "each color to a dioptre value; the iso-contour was extracted at sub-pixel accuracy " +
       "via radial interpolation between the last sample above and first sample below " +
       "the target quantization bin. EOZ area is the area enclosed by the contour (shoelace); ellipse is used only for axis, " +
